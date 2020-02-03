@@ -8,7 +8,7 @@ FlutterManager.startInitialization(context);
 
 # init with fixed aotFile
 ```java
-FlutterManager.startInitialization(this, aotFile);
+FlutterManager.startInitialization(this, dest, FlutterVersion.VERSION_011400);
 ```
 
 # proguard
