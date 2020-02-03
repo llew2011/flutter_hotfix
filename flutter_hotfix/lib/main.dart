@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hotfix/second.dart';
 
 void main() => runApp(MyApp());
 
@@ -53,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
       // so that the display can reflect the updated values. If we changed
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
-      _counter++;
+      _counter += 20;
     });
   }
 
@@ -98,6 +99,14 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.display1,
             ),
+            RaisedButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return SecondPage();
+                }));
+              },
+              child: Text('打开新添加的页面'),
+            )
           ],
         ),
       ),
