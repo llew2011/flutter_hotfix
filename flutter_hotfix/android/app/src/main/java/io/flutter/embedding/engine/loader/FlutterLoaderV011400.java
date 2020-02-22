@@ -116,6 +116,10 @@ public class FlutterLoaderV011400 extends FlutterLoader implements FlutterManage
 
         this.settings = settings;
 
+        // Ensure that the context is actually the application context.
+        applicationContext = applicationContext.getApplicationContext();
+
+
         long initStartTimestampMillis = SystemClock.uptimeMillis();
         initConfig(applicationContext);
         initResources(applicationContext);
@@ -153,6 +157,7 @@ public class FlutterLoaderV011400 extends FlutterLoader implements FlutterManage
             throw new IllegalStateException("ensureInitializationComplete must be called after startInitialization");
         }
         if (initialized) {
+            callbackHandler.post(callback);
             return;
         }
         new Thread(new Runnable() {
