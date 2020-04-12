@@ -33,4 +33,11 @@
         android:onClick="fix"
         android:text="修复Flutter资源" />
 
+    <EditText
+        android:id="@+id/name"
+        android:hint="加载文件名"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>

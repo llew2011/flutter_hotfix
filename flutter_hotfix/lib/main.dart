@@ -105,7 +105,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   return SecondPage();
                 }));
               },
-              child: Text('打开新添加的页面'),
+              child: Text('打开新添加的页面，新的方式实现的热修复'),
             )
           ],
         ),

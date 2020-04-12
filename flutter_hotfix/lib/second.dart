@@ -25,7 +25,7 @@ class _SecondState extends State<SecondPage> {
               width: 400,
               height: 300,
             ),
-            Text("这里是新添加的页面")
+            Text("这里是新添加的页面，新的方式实现的热修复")
           ],
         ),
       ),

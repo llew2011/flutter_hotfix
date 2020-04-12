@@ -3,8 +3,8 @@ package com.llew.flutter.hotfix;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 
 import androidx.annotation.Nullable;
 
@@ -15,20 +15,22 @@ import java.io.FileWriter;
 import java.nio.channels.FileChannel;
 
 import io.flutter.embedding.engine.hotfix.FlutterLogger;
-import io.flutter.embedding.engine.hotfix.FlutterManager;
-import io.flutter.embedding.engine.hotfix.FlutterVersion;
+import io.flutter.view.FlutterMain;
 
 public class SplashActivity extends Activity {
+
+    private EditText mEditText;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_splash);
+        mEditText = findViewById(R.id.name);
     }
 
     public void init(View view) {
-        FlutterManager.startInitialization(this);
+        FlutterMain.startInitialization(this);
     }
 
     public void open(View view) {
@@ -50,7 +52,7 @@ public class SplashActivity extends Activity {
 
 
         try {
-            File source = new File("/sdcard/hotfixed.so");
+            File source = new File("/sdcard/" + mEditText.getText().toString());
             File dest = new File(dir, "hotfix.so");
             if (dest.exists() && !dest.delete()) {
                 FileWriter writer = new FileWriter(dest, false);
@@ -67,7 +69,7 @@ public class SplashActivity extends Activity {
 
             FlutterLogger.i("copy fixed file finish: " + dest.getAbsolutePath());
 
-            FlutterManager.startInitialization(this, dest, FlutterVersion.VERSION_011400);
+            HotfixApplication.INSTANCE.setAotSharedLibraryPath(dest.getAbsolutePath());
         } catch (Throwable error) {
             FlutterLogger.e("copy file error: " + error);
         }
